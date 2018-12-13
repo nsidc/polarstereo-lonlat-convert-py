@@ -1,5 +1,6 @@
 import doctest
-from polar_convert import *
+import numpy as np
+from polar_convert import polar_lonlat_to_xy
 
 def nsidc_polar_lonlat(longitude, latitude, grid, hemisphere):
     """Transform from geodetic longitude and latitude coordinates
@@ -20,8 +21,8 @@ def nsidc_polar_lonlat(longitude, latitude, grid, hemisphere):
         the J coordinates.
 
     Examples:
-        print(nsidc_polar_lonlat(608, 896, 12.5, 1))
-            [lon=350.01450147320855, lat=34.40871032516291)
+        print(nsidc_polar_lonlat(350.0, 34.41, 12.5, 1))
+            [608, 896]
     """
 
     true_scale_lat = 70
@@ -39,17 +40,17 @@ def nsidc_polar_lonlat(longitude, latitude, grid, hemisphere):
         ymin = -5350 + grid/2
     else:
         delta = 0
-        imax = 1263
-        jmax = 1327
+        imax = 1264
+        jmax = 1328
         xmin = -3950 + grid/2
         ymin = -3950 + grid/2
 
     if grid == 12.5:
-        imax = (imax + 1)//2
-        jmax = (jmax + 1)//2
+        imax = imax//2
+        jmax = jmax//2
     elif grid == 25:
-        imax = (imax + 1)//4
-        jmax = (jmax + 1)//4
+        imax = imax//4
+        jmax = jmax//4
 
     xy = polar_lonlat_to_xy(longitude + delta, np.abs(latitude),
         true_scale_lat, re, e, hemisphere)
