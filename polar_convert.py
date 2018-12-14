@@ -1,5 +1,5 @@
-import math
 import numpy as np
+
 
 def polar_xy_to_lonlat(x, y, true_scale_lat, re, e, hemisphere):
     """Convert from Polar Stereographic (x, y) coordinates to
@@ -16,8 +16,8 @@ def polar_xy_to_lonlat(x, y, true_scale_lat, re, e, hemisphere):
     Returns:
         If x and y are scalars then the result is a
         two-element list containing [longitude, latitude].
-        If x and y are numpy arrays then the result will
-        be a two-element list where the first element is a numpy array containing
+        If x and y are numpy arrays then the result will be a two-element
+        list where the first element is a numpy array containing
         the longitudes and the second element is a numpy array containing
         the latitudes.
     """
@@ -30,8 +30,8 @@ def polar_xy_to_lonlat(x, y, true_scale_lat, re, e, hemisphere):
         t = rho*np.sqrt((1 + e)**(1 + e)*(1 - e)**(1 - e))/(2*re)
     else:
         cm = np.cos(slat)/np.sqrt(1 - e2*(np.sin(slat)**2))
-        t = np.tan((np.pi/4) - (slat/2))/((1 - e*np.sin(slat))/
-            (1 + e*np.sin(slat)))**(e/2)
+        t = np.tan((np.pi/4) - (slat/2))/((1 - e*np.sin(slat)) /
+                                          (1 + e*np.sin(slat)))**(e/2)
         t = rho*t/(re*cm)
 
     chi = (np.pi/2) - 2*np.arctan(t)
@@ -51,7 +51,7 @@ def polar_lonlat_to_xy(longitude, latitude, true_scale_lat, re, e, hemisphere):
 
     Args:
         longitude (float): longitude or longitude array in degrees
-        latitude (float): latitude or latitude array in degrees (always positive)
+        latitude (float): latitude or latitude array in degrees (positive)
         true_scale_lat (float): true-scale latitude in degrees
         re (float): Earth radius in km
         e (float): Earth eccentricity
@@ -60,8 +60,8 @@ def polar_lonlat_to_xy(longitude, latitude, true_scale_lat, re, e, hemisphere):
     Returns:
         If longitude and latitude are scalars then the result is a
         two-element list containing [X, Y] in km.
-        If longitude and latitude are numpy arrays then the result will
-        be a two-element list where the first element is a numpy array containing
+        If longitude and latitude are numpy arrays then the result will be a
+        two-element list where the first element is a numpy array containing
         the X coordinates and the second element is a numpy array containing
         the Y coordinates.
     """
