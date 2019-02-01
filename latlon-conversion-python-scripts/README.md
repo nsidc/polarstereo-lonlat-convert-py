@@ -22,6 +22,8 @@ Transform from NSIDC Polar Stereographic I, J (grid) coordinates to longitude an
 
 **read_mask**: Read in a Polar Stereographic mask file and return the data.
 
+**read_mask_hdf**: Read in an HDF4 Polar Stereographic mask file and return the data.
+
 **display_mask**: Read in and display a Polar Stereographic mask file.
 
 ## FORTRAN Code
