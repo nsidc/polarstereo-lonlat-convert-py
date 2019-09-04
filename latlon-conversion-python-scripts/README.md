@@ -17,14 +17,18 @@ See also [Polar Stereo Overview](https://nsidc.org/data/polar-stereo).
 ## Requirements
 
 * Python 3.6 or higher (tested with 3.6.7)
+* numpy
+* cartopy
+* [pyhdf](https://hdfeos.org/software/pyhdf.php)
+* HDF4
 
 ## Installation
 
-No special installation is needed
+No special installation is needed.
 
 ## Usage
 
-See the individual files for details.
+See the individual files for details.  The utilities in these files can be used in your own projects.
 
 ### Python Code
 
