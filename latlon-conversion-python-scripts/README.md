@@ -10,7 +10,23 @@ This repo contains conversion routines between longitude/latitude and generic x,
 
 See also [Polar Stereo Overview](https://nsidc.org/data/polar-stereo).
 
-## Python Code
+## Level of Support
+
+* This repository is fully supported by NSIDC. If you discover any problems or bugs, please submit an Issue. If you would like to contribute to this repository, you may fork the repository and submit a pull request.
+
+## Requirements
+
+* Python 3.6 or higher (tested with 3.6.7)
+
+## Installation
+
+No special installation is needed
+
+## Usage
+
+See the individual files for details.
+
+### Python Code
 
 **polar_convert.py**:
 Convert from longitude, latitude to Polar Stereographic x, y (km) and vice versa.  
@@ -29,3 +45,15 @@ Transform from NSIDC Polar Stereographic I, J (grid) coordinates to longitude an
 **read_mask_hdf**: Read in an HDF4 Polar Stereographic mask file and return the data.
 
 **display_mask**: Read in and display a Polar Stereographic mask file.
+
+## License
+
+See [LICENSE](LICENSE.md)
+
+## Code of Conduct
+
+See [Code of Conduct](CODE_OF_CONDUCT.md).
+
+## Credit
+
+This software was developed by the National Snow and Ice Data Center with funding from multiple sources.
