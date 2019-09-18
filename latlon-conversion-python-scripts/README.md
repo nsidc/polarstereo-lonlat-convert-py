@@ -2,7 +2,7 @@
 
 Utilities for converting polar stereographic coordinates.
 
-To access the legacy IDL or Fortran version of these tools, see [polar_stereo_legacy](https://github.com/nsidc/polar_stereo_legacy.git).__
+To access the legacy IDL or Fortran version of these tools, see [polar_stereo_legacy](https://github.com/nsidc/polar_stereo_legacy.git).
 
 NSIDC's polar stereographic projection specifies a projection plane or grid tangent to the Earth's surface at 70° northern and southern latitude. While this increases the distortion at the poles by six percent and decreases the distortion at the grid boundaries by the same amount, the latitude of 70° was selected so that little or no distortion would occur in the marginal ice zone.
 
