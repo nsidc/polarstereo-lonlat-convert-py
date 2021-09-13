@@ -36,7 +36,7 @@ gfortran locate.for mapll.for mapxy.for -o locatefor
 [`Docker`](https://www.docker.com/) can be used to run `locate.for`.
 
 A `Dockerfile` has been included in this directory and can be used to create a
-Docker image runs `locatefor`.
+Docker image that runs `locatefor`.
 
 To build the `locatefor` Docker image:
 
