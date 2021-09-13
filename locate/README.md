@@ -19,7 +19,7 @@ contact nsidc@nsidc.org for more information.
 
 ## Requirements
 
-`locate.for` requries `gfortran`.
+`locate.for` requries [`gfortran`](https://gcc.gnu.org/wiki/GFortran).
 
 
 ## Installation
@@ -36,7 +36,7 @@ gfortran locate.for mapll.for mapxy.for -o locatefor
 A `Dockerfile` has been included in this directory and can be used to create an
 executable that runs `locatefor`.
 
-First, build the Docker image:
+To build the Docker image:
 
 ```
 docker build . -t locatefor
