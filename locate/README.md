@@ -2,7 +2,10 @@
 
 # locate.for
 
-TODO
+This program transforms I,J coordinates of an SSM/I grid cell to latitude and
+longitude coordinates. This program provides the inverse functions as
+well. LOCATE interfaces to the revised forms of the subroutines, MAPXY and
+MAPLL.
 
 ## Level of Support
 
@@ -16,17 +19,58 @@ contact nsidc@nsidc.org for more information.
 
 ## Requirements
 
-TODO
+`locate.for` requries `gfortran`.
 
 
 ## Installation
 
-TODO
+Install `gfortran` and then compile the `locatefor` executable with the
+following command:
 
+```
+gfortran locate.for mapll.for mapxy.for -o locatefor
+```
+
+### With Docker
+
+A `Dockerfile` has been included in this directory and can be used to create an
+executable that runs `locatefor`.
+
+First, build the Docker image:
+
+```
+docker build . -t locatefor
+```
 
 ## Usage
 
-TODO
+To use `locate.for`, simply run the compiled `locatefor` and follow the prompts.
+
+For example, to use the `locatefor` docker image to convert northern hemisphere
+I,J coordinates to latitude,longitude coordinates:
+
+```
+$ docker run -it locatefor
+ Enter the grid cell dimension:
+  1. 12.5 Km
+  2. 25.0 Km
+1
+ Enter the hemisphere of interest:
+  1. North
+  2. South
+1
+ Enter one of the following transform functions:
+  1. Convert I,J to Latitude, Longitude
+  2. Convert Latitude, Longitude to I,J
+1
+ Enter the column number
+ the valid range is (1-608)
+200
+ Enter the row number
+ the valid range is (1-896)
+300
+   67.1696243       167.778168
+```
 
 ## License
 
