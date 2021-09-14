@@ -53,9 +53,9 @@ be used in your own projects.
 ### Python Code
 
 **polar_convert.py**:
-Convert from longitude, latitude to Polar Stereographic x, y (km) and vice versa.  
-`polar_lonlat_to_xy` replaces Fortran `mapll.for`  
-`polar_xy_to_lonlat` replaces Fortran `mapxy.for`  
+Convert from longitude, latitude to Polar Stereographic x, y (km) and vice versa.
+`polar_lonlat_to_xy` replaces Fortran `mapll.for`
+`polar_xy_to_lonlat` replaces Fortran `mapxy.for`
 
 **nsidc_polar_lonlat.py**:
 Transform from longitude and latitude
