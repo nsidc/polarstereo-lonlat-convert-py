@@ -1,34 +1,54 @@
-# NSIDC Polar Stereographic Projection
+![NSIDC logo](../images/NSIDC_DAAC_2018_smv2.jpg)
+
+# NSIDC Polar Stereographic Projection lon/lat python scripts
 
 Utilities for converting polar stereographic coordinates.
 
-To access the legacy IDL or Fortran version of these tools, see [polar_stereo_legacy](https://github.com/nsidc/polar_stereo_legacy.git).
+NSIDC's polar stereographic projection specifies a projection plane or grid
+tangent to the Earth's surface at 70° northern and southern latitude. While this
+increases the distortion at the poles by six percent and decreases the
+distortion at the grid boundaries by the same amount, the latitude of 70° was
+selected so that little or no distortion would occur in the marginal ice zone.
 
-NSIDC's polar stereographic projection specifies a projection plane or grid tangent to the Earth's surface at 70° northern and southern latitude. While this increases the distortion at the poles by six percent and decreases the distortion at the grid boundaries by the same amount, the latitude of 70° was selected so that little or no distortion would occur in the marginal ice zone.
-
-This repo contains conversion routines between longitude/latitude and generic x, y (km) coordinates. There are also conversion routines between longitude/latitude and i, j grid coordinates for specific datasets for AMSR-E and SSM/I.
+This directory contains conversion functions between longitude/latitude and generic x,
+y (km) coordinates. There are also conversion functions between
+longitude/latitude and i, j grid coordinates for specific datasets for AMSR-E
+and SSM/I.
 
 See also [Polar Stereo Overview](https://nsidc.org/data/polar-stereo).
 
 ## Level of Support
 
-* This repository is fully supported by NSIDC. If you discover any problems or bugs, please submit an Issue. If you would like to contribute to this repository, you may fork the repository and submit a pull request.
+<b>This directory is fully supported by the NSIDC DAAC</b>. If you discover any problems or
+bugs, please submit an Issue. If you would like to contribute to this
+repository, you may fork the repository and submit a pull request.
+
+See the [LICENSE](../LICENSE) for details on permissions and warranties. Please
+contact nsidc@nsidc.org for more information.
 
 ## Requirements
 
 * Python 3.6 or higher (tested with 3.6.7)
-* numpy (python library)
-* cartopy (python library)
-* [pyhdf](https://hdfeos.org/software/pyhdf.php) (python library)
-* HDF4 (on unix, this would be a package such as libhdf4-dev)
+* [`numpy`](https://numpy.org/) (python library)
+
+These requirements are also included in the provided `environment.yml` file,
+which can be used with [conda](https://docs.conda.io/en/latest/) to install the
+requirements into a `conda` environment.
+
 
 ## Installation
 
-No special installation is needed, other than installing the above requirements.
+It is reccomended to install the requirements for the included scripts with `conda`:
+
+```
+$ conda env create -f environment.yml
+$ conda activate lonlat
+```
 
 ## Usage
 
-See the individual files for details.  The utilities in these files can be used in your own projects.
+See the individual files for details.  The functions defined in these files can
+be used in your own projects.
 
 ### Python Code
 
@@ -44,20 +64,17 @@ Transform from longitude and latitude
 **nsidc_polar_ij.py**:
 Transform from NSIDC Polar Stereographic I, J (grid) coordinates to longitude and latitude.
 
-**read_mask**: Read in a Polar Stereographic mask file and return the data.
-
-**read_mask_hdf**: Read in an HDF4 Polar Stereographic mask file and return the data.
-
-**display_mask**: Read in and display a Polar Stereographic mask file.
-
 ## License
 
-See [LICENSE](LICENSE.md)
+See [LICENSE](../LICENSE).
+
 
 ## Code of Conduct
 
-See [Code of Conduct](CODE_OF_CONDUCT.md).
+See [Code of Conduct](../CODE_OF_CONDUCT.md).
+
 
 ## Credit
 
-This software was developed by the National Snow and Ice Data Center with funding from multiple sources.
+This software was developed by the NASA National Snow and Ice Data Center
+Distributed Active Archive Center.
