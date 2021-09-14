@@ -28,7 +28,7 @@ contact nsidc@nsidc.org for more information.
 
 ## Requirements
 
-* Python 3.6 or higher (tested with 3.6.7)
+* Python 3.6 or higher (tested with 3.6.7 and 3.9.7)
 * [`numpy`](https://numpy.org/) (python library)
 
 These requirements are also included in the provided `environment.yml` file,

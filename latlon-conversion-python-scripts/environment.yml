@@ -1,0 +1,7 @@
+name: lonlat
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - python ~=3.6
+  - numpy ~=1.21.2
