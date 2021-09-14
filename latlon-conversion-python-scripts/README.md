@@ -50,19 +50,33 @@ $ conda activate lonlat
 See the individual files for details.  The functions defined in these files can
 be used in your own projects.
 
-### Python Code
+### `polar_convert.py`
 
-**polar_convert.py**:
-Convert from longitude, latitude to Polar Stereographic x, y (km) and vice versa.
-`polar_lonlat_to_xy` replaces Fortran `mapll.for`
-`polar_xy_to_lonlat` replaces Fortran `mapxy.for`
+Convert from longitude, latitude to Polar Stereographic x, y (km) and vice
+versa. This module defines two functions:
 
-**nsidc_polar_lonlat.py**:
-Transform from longitude and latitude
-    to NSIDC Polar Stereographic I, J (grid) coordinates.
+* `polar_lonlat_to_xy`: Convert from geodetic longitude and latitude to Polar
+    Stereographic (X, Y) coordinates in km. Functional equivilient of
+    [`mapll.for`](../locate/mapll.for).
 
-**nsidc_polar_ij.py**:
-Transform from NSIDC Polar Stereographic I, J (grid) coordinates to longitude and latitude.
+* `polar_xy_to_lonlat`: Convert from Polar Stereographic (x, y) coordinates to
+    geodetic longitude and latitude. Functional equivilent of
+    [`mapxy.for`](../locate/mapxy.for)
+
+### `nsidc_polar_lonlat.py`
+
+This module defines a function `nsidc_polar_lonlat` that transforms from
+longitude and latitude to NSIDC Polar Stereographic I, J (grid) coordinates.
+
+### `nsidc_polar_ij.py`
+
+This module defines a function `nsidc_polar_ij` that transforms from NSIDC Polar
+Stereographic I, J (grid) coordinates to longitude and latitude.
+
+### `test_nsidc_polar.py`
+
+Simple tests for the `nsidc_polar_lonlat` and `nsidc_polar_ij` functions.
+
 
 ## License
 
