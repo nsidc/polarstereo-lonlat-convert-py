@@ -8,10 +8,12 @@
 #
 # CT, NSIDC, Jan 2019.
 #
-from nsidc_polar_lonlat import nsidc_polar_lonlat
-from nsidc_polar_ij import nsidc_polar_ij
-import numpy as np
 import time
+
+import numpy as np
+
+from nsidc_polar_ij import nsidc_polar_ij
+from nsidc_polar_lonlat import nsidc_polar_lonlat
     
 grid = [6.25, 12.5, 25]
 imax = [1216, 608, 304]

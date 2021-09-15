@@ -1,5 +1,6 @@
-from polar_convert import polar_xy_to_lonlat
 import numpy as np
+
+from polar_convert import polar_xy_to_lonlat
 
 
 def nsidc_polar_ij(i, j, grid, hemisphere):
