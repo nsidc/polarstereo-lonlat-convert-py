@@ -59,9 +59,33 @@ versa. This module defines two functions:
   Stereographic (X, Y) coordinates in km. Functional equivilient of
   [`mapll.for`](../locate/mapll.for).
   
+  ```
+  >>> from polar_convert import polar_lonlat_to_xy
+  >>> longitude = 20  # longitude in degrees
+  >>> latitude = 80  # latitude in degrees
+  >>> true_scale_lat = 70  # true-scale latitude in degrees
+  >>> re = 6378.137  # earth radius in km
+  >>> e = 0.01671 # earth eccentricity
+  >>> hemisphere = 1  # 1 is 'north' and anything else is 'south'.
+  >>> polar_lonlat_to_xy(longitude, latitude, true_scale_lat, re, e, hemisphere)
+  [370.2450347527368, -1017.2398726483362]
+  ```
+
 * `polar_xy_to_lonlat`: Convert from Polar Stereographic (x, y) coordinates to
   geodetic longitude and latitude. Functional equivilent of
   [`mapxy.for`](../locate/mapxy.for)
+
+  ```
+  >>> from polar_convert import polar_xy_to_lonlat
+  >>> x = 370.25  # x coordinate in km
+  >>> y = -1017.24  # y coordinate in km
+  >>> true_scale_lat = 70  # true-scale latitude in degrees 
+  >>> re = 6378.137  # earth radius in km
+  >>> e = 0.01671 # earth eccentricity
+  >>> hemisphere = 1  # 1 is 'north' and anything else is 'south'.
+  >>> polar_xy_to_lonlat(x, y, true_scale_lat, re, e, hemisphere)
+  [20.000244645773623, 79.99998329186566]
+  ```
 
 ### `nsidc_polar_lonlat.py`
 
