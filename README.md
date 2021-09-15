@@ -1,6 +1,6 @@
 ![NSIDC logo](/images/NSIDC_logo_2018_poster-1.png)
 
-# Polar Stereographic geolcation, conversion, and lookup
+# Polar Stereographic geolocation, conversion, and lookup
 
 Scripts for working with NSIDC data in polar stereographic projections.
 
