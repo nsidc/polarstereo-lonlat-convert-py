@@ -26,8 +26,7 @@ for g in [0, 1, 2]:
         lonlat = nsidc_polar_ij(i, jj, grid[g], 1)
         ij = nsidc_polar_lonlat(lonlat[0], lonlat[1], grid[g], 1)
         if np.any(np.not_equal(ij[0], i)) or np.any(np.not_equal(ij[1], jj)):
-            print("error: i=" + str(i))
-            break
+            raise RuntimeError("error: i=" + str(i))
     print(" time=" + str(time.perf_counter() - tic))
 
 imax = [1264, 632, 316]
@@ -40,6 +39,5 @@ for g in [0, 1, 2]:
         lonlat = nsidc_polar_ij(i, jj, grid[g], -1)
         ij = nsidc_polar_lonlat(lonlat[0], lonlat[1], grid[g], -1)
         if np.any(np.not_equal(ij[0], i)) or np.any(np.not_equal(ij[1], jj)):
-            print("error: i=" + str(i))
-            break
+            raise RuntimeError("error: i=" + str(i))
     print(" time=" + str(time.perf_counter() - tic))
