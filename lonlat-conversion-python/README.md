@@ -73,6 +73,17 @@ longitude and latitude to NSIDC Polar Stereographic I, J (grid) coordinates.
 This module defines a function `nsidc_polar_ij` that transforms from NSIDC Polar
 Stereographic I, J (grid) coordinates to longitude and latitude.
 
+```
+>>> from nsidc_polar_ij import nsidc_polar_ij
+>>> i = 10  # `i` is an int representing the x grid coordinate
+>>> j = 200  # `j` is an int representing y grid coordinate
+>>> grid_size = 12.5  # in km
+>>> hemisphere = 1  # 1 is 'north' and anything else is 'south'
+>>> nsidc_polar_ij(i, j, grid, hemisphere)
+[183.02869857834057, 45.89915728375587]
+```
+
+
 ### `test_nsidc_polar.py`
 
 Simple tests for the `nsidc_polar_lonlat` and `nsidc_polar_ij` functions.
