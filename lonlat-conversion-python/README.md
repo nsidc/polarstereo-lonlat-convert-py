@@ -68,6 +68,16 @@ versa. This module defines two functions:
 This module defines a function `nsidc_polar_lonlat` that transforms from
 longitude and latitude to NSIDC Polar Stereographic I, J (grid) coordinates.
 
+```
+>>> from nsidc_polar_lonlat import nsidc_polar_lonlat
+>>> longitude = 45  # longitude in degrees
+>>> latitude = 85  # latitude in degrees
+>>> grid_size = 6.25  # in km
+>>> hemisphere = 1  # 1 is 'north' and anything else is 'south'.
+>>> nsidc_polar_lonlat(longitude, latitude, grid, hemisphere)
+[703, 936]
+```
+
 ### `nsidc_polar_ij.py`
 
 This module defines a function `nsidc_polar_ij` that transforms from NSIDC Polar
