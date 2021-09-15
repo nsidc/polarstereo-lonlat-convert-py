@@ -56,12 +56,12 @@ Convert from longitude, latitude to Polar Stereographic x, y (km) and vice
 versa. This module defines two functions:
 
 * `polar_lonlat_to_xy`: Convert from geodetic longitude and latitude to Polar
-    Stereographic (X, Y) coordinates in km. Functional equivilient of
-    [`mapll.for`](../locate/mapll.for).
-
+  Stereographic (X, Y) coordinates in km. Functional equivilient of
+  [`mapll.for`](../locate/mapll.for).
+  
 * `polar_xy_to_lonlat`: Convert from Polar Stereographic (x, y) coordinates to
-    geodetic longitude and latitude. Functional equivilent of
-    [`mapxy.for`](../locate/mapxy.for)
+  geodetic longitude and latitude. Functional equivilent of
+  [`mapxy.for`](../locate/mapxy.for)
 
 ### `nsidc_polar_lonlat.py`
 
