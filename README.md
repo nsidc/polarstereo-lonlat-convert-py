@@ -29,7 +29,7 @@ Script installation instructions are provided in the README file within each sub
 The `locate` directory includes fortran code for converting between I,J
 coodinates of an SSM/I grid cell to latitude and longitude coordinates.
 
-### lonlat-conversion-python-scripts
+### lonlat-conversion-python
 
 The `lonlat-conversion-python-scripts` directory contains python modules that
 define functions that convert between longitude, latitude and Polar
