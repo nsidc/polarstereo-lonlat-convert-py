@@ -139,6 +139,12 @@ Testing Southern hemisphere, 25km
 ```
 
 
+## Development
+
+See [DEVELOPMENT.md](./DEVELOPMENT.md) for information on how to contribute to
+this python code.
+
+
 ## License
 
 See [LICENSE](../LICENSE).
