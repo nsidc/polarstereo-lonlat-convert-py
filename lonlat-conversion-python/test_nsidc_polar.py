@@ -31,8 +31,6 @@ def test_hemisphere(hemisphere, imax_list, jmax_list):
 
 
 if __name__ == '__main__':
-    # test_northern_hemisphere()
-    # test_southern_hemisphere()
     test_hemisphere(
         NORTH,
         [1216, 608, 304],
