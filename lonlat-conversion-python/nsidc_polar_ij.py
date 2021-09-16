@@ -40,21 +40,21 @@ def nsidc_polar_ij(i, j, grid_size, hemisphere):
         delta = 45
         imax = 1216
         jmax = 1792
-        xmin = -3850 + grid_size/2
-        ymin = -5350 + grid_size/2
+        xmin = -3850 + grid_size / 2
+        ymin = -5350 + grid_size / 2
     else:
         delta = 0
         imax = 1264
         jmax = 1328
-        xmin = -3950 + grid_size/2
-        ymin = -3950 + grid_size/2
+        xmin = -3950 + grid_size / 2
+        ymin = -3950 + grid_size / 2
 
     if grid_size == 12.5:
-        imax = imax//2
-        jmax = jmax//2
+        imax = imax // 2
+        jmax = jmax // 2
     elif grid_size == 25:
-        imax = imax//4
-        jmax = jmax//4
+        imax = imax // 4
+        jmax = jmax // 4
 
     if np.any(np.less(i, 1)) or np.any(np.greater(i, imax)):
         raise ValueError("'i' value is out of range: [1, " + str(imax) + "]")
@@ -62,9 +62,10 @@ def nsidc_polar_ij(i, j, grid_size, hemisphere):
         raise ValueError("'j' value is out of range: [1, " + str(jmax) + "]")
 
     # Convert I, J pairs to x and y distances from origin.
-    x = ((i - 1)*grid_size) + xmin
-    y = ((jmax - j)*grid_size) + ymin
+    x = ((i - 1) * grid_size) + xmin
+    y = ((jmax - j) * grid_size) + ymin
     lonlat = polar_xy_to_lonlat(x, y, true_scale_lat, re, e, hemisphere)
     lon = lonlat[0] - delta
-    lon = lon + np.less(lon, 0)*360
+    lon = lon + np.less(lon, 0) * 360
+
     return [lon, lonlat[1]]
