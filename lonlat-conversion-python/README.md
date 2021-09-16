@@ -117,28 +117,6 @@ Stereographic I, J (grid) coordinates to longitude and latitude.
 [183.02869857834057, 45.89915728375587]
 ```
 
-
-### `test_nsidc_polar.py`
-
-Simple tests for the `nsidc_polar_lonlat` and `nsidc_polar_ij` functions.
-
-```
-$ python test_nsidc_polar.py
-Testing Northern hemisphere, 6.25km
- time=0.6453779018484056
-Testing Northern hemisphere, 12.5km
- time=0.2094833878800273
-Testing Northern hemisphere, 25km
- time=0.07760114083066583
-Testing Southern hemisphere, 6.25km
- time=0.549166772980243
-Testing Southern hemisphere, 12.5km
- time=0.18855400010943413
-Testing Southern hemisphere, 25km
- time=0.07395890913903713
-```
-
-
 ## Development
 
 See [DEVELOPMENT.md](./DEVELOPMENT.md) for information on how to contribute to
