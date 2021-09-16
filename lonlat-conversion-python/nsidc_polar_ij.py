@@ -1,5 +1,6 @@
 import numpy as np
 
+from constants import VALID_GRID_SIZES
 from polar_convert import polar_xy_to_lonlat
 
 
@@ -30,8 +31,10 @@ def nsidc_polar_ij(i, j, grid_size, hemisphere):
     re = 6378.273
     e = 0.081816153
 
-    if grid_size != 6.25 and grid_size != 12.5 and grid_size != 25:
-        raise ValueError("Legal grid_size values are 6.25, 12.5, or 25")
+    if grid_size not in VALID_GRID_SIZES:
+        raise ValueError(
+            f'Got grid_size of {grid_size} but expected one of {VALID_GRID_SIZES}'
+        )
 
     if hemisphere != 1 and hemisphere != -1:
         raise ValueError("Legal hemisphere values are 1 or -1")
