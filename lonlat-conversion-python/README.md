@@ -60,13 +60,14 @@ versa. This module defines two functions:
   [`mapll.for`](../locate/mapll.for).
   
   ```
+  >>> from constants import NORTH
   >>> from polar_convert import polar_lonlat_to_xy
   >>> longitude = 20  # longitude in degrees
   >>> latitude = 80  # latitude in degrees
   >>> true_scale_lat = 70  # true-scale latitude in degrees
   >>> re = 6378.137  # earth radius in km
   >>> e = 0.01671 # earth eccentricity
-  >>> hemisphere = 1  # 1 is 'north' and anything else is 'south'.
+  >>> hemisphere = NORTH
   >>> polar_lonlat_to_xy(longitude, latitude, true_scale_lat, re, e, hemisphere)
   [370.2450347527368, -1017.2398726483362]
   ```
@@ -76,13 +77,14 @@ versa. This module defines two functions:
   [`mapxy.for`](../locate/mapxy.for)
 
   ```
+  >>> from constants import NORTH
   >>> from polar_convert import polar_xy_to_lonlat
   >>> x = 370.25  # x coordinate in km
   >>> y = -1017.24  # y coordinate in km
   >>> true_scale_lat = 70  # true-scale latitude in degrees 
   >>> re = 6378.137  # earth radius in km
   >>> e = 0.01671 # earth eccentricity
-  >>> hemisphere = 1  # 1 is 'north' and anything else is 'south'.
+  >>> hemisphere = NORTH
   >>> polar_xy_to_lonlat(x, y, true_scale_lat, re, e, hemisphere)
   [20.000244645773623, 79.99998329186566]
   ```
@@ -93,11 +95,12 @@ This module defines a function `nsidc_polar_lonlat` that transforms from
 longitude and latitude to NSIDC Polar Stereographic I, J (grid) coordinates.
 
 ```
+>>> from constants import NORTH
 >>> from nsidc_polar_lonlat import nsidc_polar_lonlat
 >>> longitude = 45  # longitude in degrees
 >>> latitude = 85  # latitude in degrees
 >>> grid_size = 6.25  # in km
->>> hemisphere = 1  # 1 is 'north' and anything else is 'south'.
+>>> hemisphere = NORTH
 >>> nsidc_polar_lonlat(longitude, latitude, grid, hemisphere)
 [703, 936]
 ```
@@ -108,11 +111,12 @@ This module defines a function `nsidc_polar_ij` that transforms from NSIDC Polar
 Stereographic I, J (grid) coordinates to longitude and latitude.
 
 ```
+>>> from constants import NORTH
 >>> from nsidc_polar_ij import nsidc_polar_ij
 >>> i = 10  # `i` is an int representing the x grid coordinate
 >>> j = 200  # `j` is an int representing y grid coordinate
 >>> grid_size = 12.5  # in km
->>> hemisphere = 1  # 1 is 'north' and anything else is 'south'
+>>> hemisphere = NORTH
 >>> nsidc_polar_ij(i, j, grid, hemisphere)
 [183.02869857834057, 45.89915728375587]
 ```
