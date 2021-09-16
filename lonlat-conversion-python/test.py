@@ -1,13 +1,3 @@
-# Automated testing for nsidc_polar_* routines.
-# Run through all grid sizes for both hemispheres,
-# convert from all grid_size locations to lon/lat and back again,
-# verify that the output is identical.
-#
-# To run, from a command prompt:
-#   python test_nsidc_polar.py
-#
-# CT, NSIDC, Jan 2019.
-#
 import time
 
 import numpy as np
@@ -20,6 +10,12 @@ from validators import validate_hemisphere, validate_grid_size
 
 
 def _test_hemisphere(hemisphere, imax_list, jmax_list):
+    """Test nsidc_polar_* functions.
+
+    Run through all grid sizes for the given hemisphere, convert from all
+    grid_size locations to lon/lat and back again, verify that the output is
+    identical.
+    """
     for idx, grid_size in enumerate(VALID_GRID_SIZES):
         print(f'Testing {hemisphere} hemisphere, {grid_size}km')
         tic = time.perf_counter()
