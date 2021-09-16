@@ -11,6 +11,7 @@
 import time
 
 import numpy as np
+import pytest
 
 from constants import NORTH, SOUTH, VALID_GRID_SIZES
 from nsidc_polar_ij import nsidc_polar_ij
@@ -51,7 +52,16 @@ def test_validate_hemisphere():
     assert 'north' == validate_hemisphere('NORTH')
     assert 'south' == validate_hemisphere('SOUTH')
 
+    # Assert that a `ValueError` is raised when invalid input is given
+    for invalid_hemi in ('n', 's', 'noth', 'soth', 1, -1):
+        with pytest.raises(ValueError):
+            validate_hemisphere(invalid_hemi)
+
 
 def test_validate_grid_size():
     for grid_size in VALID_GRID_SIZES:
         assert grid_size == validate_grid_size(grid_size)
+
+    for invalid_grid_size in ('foo', 1, 400, -1):
+        with pytest.raises(ValueError):
+            validate_grid_size(invalid_grid_size)
