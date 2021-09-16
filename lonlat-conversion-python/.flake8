@@ -1,0 +1,9 @@
+[flake8]
+max-line-length = 90
+max-complexity = 8
+
+# https://flake8.pycqa.org/en/2.5.5/config.html#default
+# If the ignore option is not in the configuration and not in the arguments, only
+# the error codes E123/E133, E226 and E241/E242 are ignored (see the warning and
+# error codes).
+ignore = 

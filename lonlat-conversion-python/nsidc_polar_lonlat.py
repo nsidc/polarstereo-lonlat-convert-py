@@ -6,13 +6,13 @@ from polar_convert import polar_lonlat_to_xy
 def nsidc_polar_lonlat(longitude, latitude, grid_size, hemisphere):
     """Transform from geodetic longitude and latitude coordinates
     to NSIDC Polar Stereographic I, J coordinates
-    
+
     Args:
         longitude (float): longitude or longitude array in degrees
         latitude (float): latitude or latitude array in degrees (positive)
         grid_size (float): 6.25, 12.5 or 25; the grid_size cell dimensions in km
         hemisphere (1 or -1): Northern or Southern hemisphere
-    
+
     Returns:
         If longitude and latitude are scalars then the result is a
         two-element list containing [I, J].
@@ -32,31 +32,31 @@ def nsidc_polar_lonlat(longitude, latitude, grid_size, hemisphere):
 
     if grid_size != 6.25 and grid_size != 12.5 and grid_size != 25:
         raise ValueError("Legal grid_size value are 6.25, 12.5, or 25")
-    
+
     if hemisphere >= 0:
         delta = 45
         imax = 1216
         jmax = 1792
-        xmin = -3850 + grid_size/2
-        ymin = -5350 + grid_size/2
+        xmin = -3850 + grid_size / 2
+        ymin = -5350 + grid_size / 2
     else:
         delta = 0
         imax = 1264
         jmax = 1328
-        xmin = -3950 + grid_size/2
-        ymin = -3950 + grid_size/2
+        xmin = -3950 + grid_size / 2
+        ymin = -3950 + grid_size / 2
 
     if grid_size == 12.5:
-        imax = imax//2
-        jmax = jmax//2
+        imax = imax // 2
+        jmax = jmax // 2
     elif grid_size == 25:
-        imax = imax//4
-        jmax = jmax//4
+        imax = imax // 4
+        jmax = jmax // 4
 
     xy = polar_lonlat_to_xy(longitude + delta, np.abs(latitude),
                             true_scale_lat, re, e, hemisphere)
-    i = (np.round((xy[0] - xmin)/grid_size)).astype(int) + 1
-    j = (np.round((xy[1] - ymin)/grid_size)).astype(int) + 1
+    i = (np.round((xy[0] - xmin) / grid_size)).astype(int) + 1
+    j = (np.round((xy[1] - ymin) / grid_size)).astype(int) + 1
     # Flip grid_size orientation in the 'y' direction
     j = jmax - j + 1
     return [i, j]

@@ -14,7 +14,7 @@ import numpy as np
 
 from nsidc_polar_ij import nsidc_polar_ij
 from nsidc_polar_lonlat import nsidc_polar_lonlat
-    
+
 if __name__ == '__main__':
     grid_size = [6.25, 12.5, 25]
     imax = [1216, 608, 304]

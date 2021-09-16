@@ -6,13 +6,13 @@ from polar_convert import polar_xy_to_lonlat
 def nsidc_polar_ij(i, j, grid_size, hemisphere):
     """Transform from NSIDC Polar Stereographic I, J coordinates
     to longitude and latitude coordinates
-    
+
     Args:
         i (int): an integer or integer array giving the x grid_size coordinate(s)
         j (int): an integer or integer array giving the y grid_size coordinate(s)
         grid_size (float): 6.25, 12.5 or 25; the grid_size cell dimensions in km
         hemisphere (1 or -1): Northern or Southern hemisphere
-    
+
     Returns:
         If i and j are scalars then the result is a
         two-element list containing [longitude, latitude].
@@ -32,7 +32,7 @@ def nsidc_polar_ij(i, j, grid_size, hemisphere):
 
     if grid_size != 6.25 and grid_size != 12.5 and grid_size != 25:
         raise ValueError("Legal grid_size values are 6.25, 12.5, or 25")
-    
+
     if hemisphere != 1 and hemisphere != -1:
         raise ValueError("Legal hemisphere values are 1 or -1")
 
