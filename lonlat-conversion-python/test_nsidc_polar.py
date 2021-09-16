@@ -15,6 +15,7 @@ import numpy as np
 from constants import NORTH, SOUTH, VALID_GRID_SIZES
 from nsidc_polar_ij import nsidc_polar_ij
 from nsidc_polar_lonlat import nsidc_polar_lonlat
+from validators import validate_hemisphere, validate_grid_size
 
 
 def test_hemisphere(hemisphere, imax_list, jmax_list):
@@ -30,6 +31,16 @@ def test_hemisphere(hemisphere, imax_list, jmax_list):
         print(" time=" + str(time.perf_counter() - tic))
 
 
+def test_validate_hemisphere():
+    assert 'north' == validate_hemisphere('NORTH')
+    assert 'south' == validate_hemisphere('SOUTH')
+
+
+def test_validate_grid_size():
+    for grid_size in VALID_GRID_SIZES:
+        assert grid_size == validate_grid_size(grid_size)
+
+
 if __name__ == '__main__':
     test_hemisphere(
         NORTH,
@@ -42,3 +53,6 @@ if __name__ == '__main__':
         [1264, 632, 316],
         [1328, 664, 332],
     )
+
+    test_validate_hemisphere()
+    test_validate_grid_size()
