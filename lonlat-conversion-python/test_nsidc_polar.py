@@ -12,34 +12,35 @@ import time
 
 import numpy as np
 
-from constants import NORTH, SOUTH
+from constants import NORTH, SOUTH, VALID_GRID_SIZES
 from nsidc_polar_ij import nsidc_polar_ij
 from nsidc_polar_lonlat import nsidc_polar_lonlat
 
-if __name__ == '__main__':
-    grid_size = [6.25, 12.5, 25]
-    imax = [1216, 608, 304]
-    jmax = [1792, 896, 448]
-    for g in [0, 1, 2]:
-        print("Testing Northern hemisphere, " + str(grid_size[g]) + "km")
+
+def test_hemisphere(hemisphere, imax_list, jmax_list):
+    for idx, grid_size in enumerate(VALID_GRID_SIZES):
+        print(f'Testing {hemisphere} hemisphere, {grid_size}km')
         tic = time.perf_counter()
-        for i in range(1, imax[g]):
-            jj = np.arange(1, jmax[g])
-            lonlat = nsidc_polar_ij(i, jj, grid_size[g], NORTH)
-            ij = nsidc_polar_lonlat(lonlat[0], lonlat[1], grid_size[g], NORTH)
+        for i in range(1, imax_list[idx]):
+            jj = np.arange(1, jmax_list[idx])
+            lonlat = nsidc_polar_ij(i, jj, grid_size, hemisphere)
+            ij = nsidc_polar_lonlat(lonlat[0], lonlat[1], grid_size, hemisphere)
             if np.any(np.not_equal(ij[0], i)) or np.any(np.not_equal(ij[1], jj)):
                 raise RuntimeError("error: i=" + str(i))
         print(" time=" + str(time.perf_counter() - tic))
 
-    imax = [1264, 632, 316]
-    jmax = [1328, 664, 332]
-    for g in [0, 1, 2]:
-        print("Testing Southern hemisphere, " + str(grid_size[g]) + "km")
-        tic = time.perf_counter()
-        for i in range(1, imax[g]):
-            jj = np.arange(1, jmax[g])
-            lonlat = nsidc_polar_ij(i, jj, grid_size[g], SOUTH)
-            ij = nsidc_polar_lonlat(lonlat[0], lonlat[1], grid_size[g], SOUTH)
-            if np.any(np.not_equal(ij[0], i)) or np.any(np.not_equal(ij[1], jj)):
-                raise RuntimeError("error: i=" + str(i))
-        print(" time=" + str(time.perf_counter() - tic))
+
+if __name__ == '__main__':
+    # test_northern_hemisphere()
+    # test_southern_hemisphere()
+    test_hemisphere(
+        NORTH,
+        [1216, 608, 304],
+        [1792, 896, 448],
+    )
+
+    test_hemisphere(
+        SOUTH,
+        [1264, 632, 316],
+        [1328, 664, 332],
+    )
