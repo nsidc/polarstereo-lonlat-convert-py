@@ -12,6 +12,7 @@ import time
 
 import numpy as np
 
+from constants import NORTH, SOUTH
 from nsidc_polar_ij import nsidc_polar_ij
 from nsidc_polar_lonlat import nsidc_polar_lonlat
 
@@ -24,8 +25,8 @@ if __name__ == '__main__':
         tic = time.perf_counter()
         for i in range(1, imax[g]):
             jj = np.arange(1, jmax[g])
-            lonlat = nsidc_polar_ij(i, jj, grid_size[g], 1)
-            ij = nsidc_polar_lonlat(lonlat[0], lonlat[1], grid_size[g], 1)
+            lonlat = nsidc_polar_ij(i, jj, grid_size[g], NORTH)
+            ij = nsidc_polar_lonlat(lonlat[0], lonlat[1], grid_size[g], NORTH)
             if np.any(np.not_equal(ij[0], i)) or np.any(np.not_equal(ij[1], jj)):
                 raise RuntimeError("error: i=" + str(i))
         print(" time=" + str(time.perf_counter() - tic))
@@ -37,8 +38,8 @@ if __name__ == '__main__':
         tic = time.perf_counter()
         for i in range(1, imax[g]):
             jj = np.arange(1, jmax[g])
-            lonlat = nsidc_polar_ij(i, jj, grid_size[g], -1)
-            ij = nsidc_polar_lonlat(lonlat[0], lonlat[1], grid_size[g], -1)
+            lonlat = nsidc_polar_ij(i, jj, grid_size[g], SOUTH)
+            ij = nsidc_polar_lonlat(lonlat[0], lonlat[1], grid_size[g], SOUTH)
             if np.any(np.not_equal(ij[0], i)) or np.any(np.not_equal(ij[1], jj)):
                 raise RuntimeError("error: i=" + str(i))
         print(" time=" + str(time.perf_counter() - tic))

@@ -1,5 +1,12 @@
 import numpy as np
 
+from validators import validate_hemisphere
+
+
+def _hemi_direction(hemisphere):
+    """Return `1` for 'north' and `-1` for 'south'"""
+    return {'north': 1, 'south': -1}[hemisphere]
+
 
 def polar_xy_to_lonlat(x, y, true_scale_lat, re, e, hemisphere):
     """Convert from Polar Stereographic (x, y) coordinates to
@@ -9,7 +16,7 @@ def polar_xy_to_lonlat(x, y, true_scale_lat, re, e, hemisphere):
         x (float): X coordinate(s) in km
         y (float): Y coordinate(s) in km
         true_scale_lat (float): true-scale latitude in degrees
-        hemisphere (1 or -1): 1 for Northern hemisphere, -1 for Southern
+        hemisphere ('north' or 'south'): Northern or Southern hemisphere
         re (float): Earth radius in km
         e (float): Earth eccentricity
 
@@ -21,6 +28,9 @@ def polar_xy_to_lonlat(x, y, true_scale_lat, re, e, hemisphere):
         the longitudes and the second element is a numpy array containing
         the latitudes.
     """
+
+    hemisphere = validate_hemisphere(hemisphere)
+    hemi_direction = _hemi_direction(hemisphere)
 
     e2 = e * e
     slat = true_scale_lat * np.pi / 180
@@ -39,9 +49,9 @@ def polar_xy_to_lonlat(x, y, true_scale_lat, re, e, hemisphere):
         ((e2 / 2) + (5 * e2 ** 2 / 24) + (e2 ** 3 / 12)) * np.sin(2 * chi) + \
         ((7 * e2 ** 2 / 48) + (29 * e2 ** 3 / 240)) * np.sin(4 * chi) + \
         (7 * e2 ** 3 / 120) * np.sin(6 * chi)
-    lat = hemisphere * lat * 180 / np.pi
-    lon = np.arctan2(hemisphere * x, -hemisphere * y)
-    lon = hemisphere * lon * 180 / np.pi
+    lat = hemi_direction * lat * 180 / np.pi
+    lon = np.arctan2(hemi_direction * x, -hemi_direction * y)
+    lon = hemi_direction * lon * 180 / np.pi
     lon = lon + np.less(lon, 0) * 360
     return [lon, lat]
 
@@ -56,7 +66,7 @@ def polar_lonlat_to_xy(longitude, latitude, true_scale_lat, re, e, hemisphere):
         true_scale_lat (float): true-scale latitude in degrees
         re (float): Earth radius in km
         e (float): Earth eccentricity
-        hemisphere (1 or -1): Northern or Southern hemisphere
+        hemisphere ('north' or 'south'): Northern or Southern hemisphere
 
     Returns:
         If longitude and latitude are scalars then the result is a
@@ -66,6 +76,9 @@ def polar_lonlat_to_xy(longitude, latitude, true_scale_lat, re, e, hemisphere):
         the X coordinates and the second element is a numpy array containing
         the Y coordinates.
     """
+
+    hemisphere = validate_hemisphere(hemisphere)
+    hemi_direction = _hemi_direction(hemisphere)
 
     lat = abs(latitude) * np.pi / 180
     lon = longitude * np.pi / 180
@@ -87,6 +100,6 @@ def polar_lonlat_to_xy(longitude, latitude, true_scale_lat, re, e, hemisphere):
         mc = np.cos(slat) / np.sqrt(1 - e2 * (np.sin(slat) ** 2))
         rho = re * mc * t / tc
 
-    x = rho * hemisphere * np.sin(hemisphere * lon)
-    y = -rho * hemisphere * np.cos(hemisphere * lon)
+    x = rho * hemi_direction * np.sin(hemi_direction * lon)
+    y = -rho * hemi_direction * np.cos(hemi_direction * lon)
     return [x, y]

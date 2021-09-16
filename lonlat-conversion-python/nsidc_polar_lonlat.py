@@ -1,7 +1,8 @@
 import numpy as np
 
-from constants import VALID_GRID_SIZES
+from constants import NORTH
 from polar_convert import polar_lonlat_to_xy
+from validators import validate_hemisphere, validate_grid_size
 
 
 def nsidc_polar_lonlat(longitude, latitude, grid_size, hemisphere):
@@ -12,7 +13,7 @@ def nsidc_polar_lonlat(longitude, latitude, grid_size, hemisphere):
         longitude (float): longitude or longitude array in degrees
         latitude (float): latitude or latitude array in degrees (positive)
         grid_size (float): 6.25, 12.5 or 25; the grid_size cell dimensions in km
-        hemisphere (1 or -1): Northern or Southern hemisphere
+        hemisphere ('north' or 'south'): Northern or Southern hemisphere
 
     Returns:
         If longitude and latitude are scalars then the result is a
@@ -31,12 +32,11 @@ def nsidc_polar_lonlat(longitude, latitude, grid_size, hemisphere):
     re = 6378.273
     e = 0.081816153
 
-    if grid_size not in VALID_GRID_SIZES:
-        raise ValueError(
-            f'Got grid_size of {grid_size} but expected one of {VALID_GRID_SIZES}'
-        )
+    validate_grid_size(grid_size)
+    hemisphere = validate_hemisphere(hemisphere)
 
-    if hemisphere >= 0:
+    # TODO: use constant
+    if hemisphere == NORTH:
         delta = 45
         imax = 1216
         jmax = 1792
@@ -56,8 +56,14 @@ def nsidc_polar_lonlat(longitude, latitude, grid_size, hemisphere):
         imax = imax // 4
         jmax = jmax // 4
 
-    xy = polar_lonlat_to_xy(longitude + delta, np.abs(latitude),
-                            true_scale_lat, re, e, hemisphere)
+    xy = polar_lonlat_to_xy(
+        longitude + delta,
+        np.abs(latitude),
+        true_scale_lat,
+        re,
+        e,
+        hemisphere
+    )
     i = (np.round((xy[0] - xmin) / grid_size)).astype(int) + 1
     j = (np.round((xy[1] - ymin) / grid_size)).astype(int) + 1
     # Flip grid_size orientation in the 'y' direction

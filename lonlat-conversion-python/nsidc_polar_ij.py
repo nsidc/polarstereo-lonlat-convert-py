@@ -1,7 +1,8 @@
 import numpy as np
 
-from constants import VALID_GRID_SIZES
+from constants import NORTH
 from polar_convert import polar_xy_to_lonlat
+from validators import validate_hemisphere, validate_grid_size
 
 
 def nsidc_polar_ij(i, j, grid_size, hemisphere):
@@ -12,7 +13,7 @@ def nsidc_polar_ij(i, j, grid_size, hemisphere):
         i (int): an integer or integer array giving the x grid_size coordinate(s)
         j (int): an integer or integer array giving the y grid_size coordinate(s)
         grid_size (float): 6.25, 12.5 or 25; the grid_size cell dimensions in km
-        hemisphere (1 or -1): Northern or Southern hemisphere
+        hemisphere ('north' or 'south'): Northern or Southern hemisphere
 
     Returns:
         If i and j are scalars then the result is a
@@ -31,15 +32,10 @@ def nsidc_polar_ij(i, j, grid_size, hemisphere):
     re = 6378.273
     e = 0.081816153
 
-    if grid_size not in VALID_GRID_SIZES:
-        raise ValueError(
-            f'Got grid_size of {grid_size} but expected one of {VALID_GRID_SIZES}'
-        )
+    validate_grid_size(grid_size)
+    hemisphere = validate_hemisphere(hemisphere)
 
-    if hemisphere != 1 and hemisphere != -1:
-        raise ValueError("Legal hemisphere values are 1 or -1")
-
-    if hemisphere == 1:
+    if hemisphere == NORTH:
         delta = 45
         imax = 1216
         jmax = 1792
