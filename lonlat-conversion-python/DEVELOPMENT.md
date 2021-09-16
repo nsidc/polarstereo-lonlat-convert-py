@@ -9,7 +9,8 @@ conda activate lonlat
 
 ## Testing
 
-Run the provided `run_tests.sh` to run tests and lint the code with `flake8`.
+Run the provided `run_tests.sh` to run tests with `pytest` and lint the code
+with `flake8`.
 
 
 ## Making a release

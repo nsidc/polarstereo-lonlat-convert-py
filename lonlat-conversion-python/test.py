@@ -18,7 +18,7 @@ from nsidc_polar_lonlat import nsidc_polar_lonlat
 from validators import validate_hemisphere, validate_grid_size
 
 
-def test_hemisphere(hemisphere, imax_list, jmax_list):
+def _test_hemisphere(hemisphere, imax_list, jmax_list):
     for idx, grid_size in enumerate(VALID_GRID_SIZES):
         print(f'Testing {hemisphere} hemisphere, {grid_size}km')
         tic = time.perf_counter()
@@ -31,6 +31,22 @@ def test_hemisphere(hemisphere, imax_list, jmax_list):
         print(" time=" + str(time.perf_counter() - tic))
 
 
+def test_northern_hemisphere():
+    _test_hemisphere(
+        NORTH,
+        [1216, 608, 304],
+        [1792, 896, 448],
+    )
+
+
+def test_southern_hemisphere():
+    _test_hemisphere(
+        SOUTH,
+        [1264, 632, 316],
+        [1328, 664, 332],
+    )
+
+
 def test_validate_hemisphere():
     assert 'north' == validate_hemisphere('NORTH')
     assert 'south' == validate_hemisphere('SOUTH')
@@ -39,20 +55,3 @@ def test_validate_hemisphere():
 def test_validate_grid_size():
     for grid_size in VALID_GRID_SIZES:
         assert grid_size == validate_grid_size(grid_size)
-
-
-if __name__ == '__main__':
-    test_hemisphere(
-        NORTH,
-        [1216, 608, 304],
-        [1792, 896, 448],
-    )
-
-    test_hemisphere(
-        SOUTH,
-        [1264, 632, 316],
-        [1328, 664, 332],
-    )
-
-    test_validate_hemisphere()
-    test_validate_grid_size()

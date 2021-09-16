@@ -6,3 +6,4 @@ dependencies:
   - python ~=3.6
   - numpy ~=1.21.2
   - flake8 ~=3.9
+  - pytest ~=6.2
