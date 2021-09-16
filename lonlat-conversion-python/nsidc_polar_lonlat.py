@@ -35,7 +35,6 @@ def nsidc_polar_lonlat(longitude, latitude, grid_size, hemisphere):
     validate_grid_size(grid_size)
     hemisphere = validate_hemisphere(hemisphere)
 
-    # TODO: use constant
     if hemisphere == NORTH:
         delta = 45
         imax = 1216
