@@ -56,7 +56,7 @@ def nsidc_polar_lonlat(longitude, latitude, grid_size, hemisphere):
         imax = imax // 4
         jmax = jmax // 4
 
-    xy = polar_lonlat_to_xy(
+    x, y = polar_lonlat_to_xy(
         longitude + delta,
         np.abs(latitude),
         TRUE_SCALE_LATITUDE,
@@ -64,8 +64,8 @@ def nsidc_polar_lonlat(longitude, latitude, grid_size, hemisphere):
         EARTH_ECCENTRICITY,
         hemisphere
     )
-    i = (np.round((xy[0] - xmin) / grid_size)).astype(int) + 1
-    j = (np.round((xy[1] - ymin) / grid_size)).astype(int) + 1
+    i = (np.round((x - xmin) / grid_size)).astype(int) + 1
+    j = (np.round((y - ymin) / grid_size)).astype(int) + 1
     # Flip grid_size orientation in the 'y' direction
     j = jmax - j + 1
     return [i, j]

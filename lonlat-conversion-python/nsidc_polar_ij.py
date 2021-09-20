@@ -64,7 +64,7 @@ def nsidc_polar_ij(i, j, grid_size, hemisphere):
     # Convert I, J pairs to x and y distances from origin.
     x = ((i - 1) * grid_size) + xmin
     y = ((jmax - j) * grid_size) + ymin
-    lonlat = polar_xy_to_lonlat(
+    lon, lat = polar_xy_to_lonlat(
         x,
         y,
         TRUE_SCALE_LATITUDE,
@@ -72,7 +72,7 @@ def nsidc_polar_ij(i, j, grid_size, hemisphere):
         EARTH_ECCENTRICITY,
         hemisphere
     )
-    lon = lonlat[0] - delta
+    lon = lon - delta
     lon = lon + np.less(lon, 0) * 360
 
-    return [lon, lonlat[1]]
+    return [lon, lat]
