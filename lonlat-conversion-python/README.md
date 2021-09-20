@@ -47,96 +47,81 @@ $ conda activate lonlat
 
 ## Usage
 
-See the individual files for details.  The functions defined in these files can
-be used in your own projects.
+See the docstrings for individual functions in `polar_convert.py` for details.
+The functions defined in this file can be used in your own projects.
 
-### `polar_convert.py`
+### `polar_lonlat_to_xy`
 
-Convert from longitude, latitude to Polar Stereographic x, y (km) and vice
-versa. This module defines two functions:
-
-* `polar_lonlat_to_xy`: Convert from geodetic longitude and latitude to Polar
-  Stereographic (X, Y) coordinates in km. Functional equivilient of
-  [`mapll.for`](../locate/mapll.for).
-  
-  ```
-  >>> from polar_convert import polar_lonlat_to_xy
-  >>> longitude = 20  # longitude in degrees
-  >>> latitude = 80  # latitude in degrees
-  >>> true_scale_lat = 70  # true-scale latitude in degrees
-  >>> re = 6378.137  # earth radius in km
-  >>> e = 0.01671 # earth eccentricity
-  >>> hemisphere = 1  # 1 is 'north' and anything else is 'south'.
-  >>> polar_lonlat_to_xy(longitude, latitude, true_scale_lat, re, e, hemisphere)
-  [370.2450347527368, -1017.2398726483362]
-  ```
-
-* `polar_xy_to_lonlat`: Convert from Polar Stereographic (x, y) coordinates to
-  geodetic longitude and latitude. Functional equivilent of
-  [`mapxy.for`](../locate/mapxy.for)
-
-  ```
-  >>> from polar_convert import polar_xy_to_lonlat
-  >>> x = 370.25  # x coordinate in km
-  >>> y = -1017.24  # y coordinate in km
-  >>> true_scale_lat = 70  # true-scale latitude in degrees 
-  >>> re = 6378.137  # earth radius in km
-  >>> e = 0.01671 # earth eccentricity
-  >>> hemisphere = 1  # 1 is 'north' and anything else is 'south'.
-  >>> polar_xy_to_lonlat(x, y, true_scale_lat, re, e, hemisphere)
-  [20.000244645773623, 79.99998329186566]
-  ```
-
-### `nsidc_polar_lonlat.py`
-
-This module defines a function `nsidc_polar_lonlat` that transforms from
-longitude and latitude to NSIDC Polar Stereographic I, J (grid) coordinates.
+Convert from geodetic longitude and latitude to Polar Stereographic (X, Y)
+coordinates in km. Functional equivilient of [`mapll.for`](../locate/mapll.for).
 
 ```
->>> from nsidc_polar_lonlat import nsidc_polar_lonlat
+>>> from constants import NORTH
+>>> from polar_convert import polar_lonlat_to_xy
+>>> longitude = 20  # longitude in degrees
+>>> latitude = 80  # latitude in degrees
+>>> true_scale_lat = 70  # true-scale latitude in degrees
+>>> re = 6378.137  # earth radius in km
+>>> e = 0.01671 # earth eccentricity
+>>> hemisphere = NORTH
+>>> polar_lonlat_to_xy(longitude, latitude, true_scale_lat, re, e, hemisphere)
+[370.2450347527368, -1017.2398726483362]
+```
+
+### `polar_xy_to_lonlat`
+
+Convert from Polar Stereographic (x, y) coordinates to geodetic longitude and
+latitude. Functional equivilent of [`mapxy.for`](../locate/mapxy.for)
+
+```
+>>> from constants import NORTH
+>>> from polar_convert import polar_xy_to_lonlat
+>>> x = 370.25  # x coordinate in km
+>>> y = -1017.24  # y coordinate in km
+>>> true_scale_lat = 70  # true-scale latitude in degrees 
+>>> re = 6378.137  # earth radius in km
+>>> e = 0.01671 # earth eccentricity
+>>> hemisphere = NORTH
+>>> polar_xy_to_lonlat(x, y, true_scale_lat, re, e, hemisphere)
+[20.000244645773623, 79.99998329186566]
+```
+
+### `polar_lonlat_to_ij`
+
+Convert from longitude and latitude to NSIDC Polar Stereographic I, J (grid)
+coordinates.
+
+```
+>>> from constants import NORTH
+>>> from polar_convert import polar_lonlat_to_ij
 >>> longitude = 45  # longitude in degrees
 >>> latitude = 85  # latitude in degrees
 >>> grid_size = 6.25  # in km
->>> hemisphere = 1  # 1 is 'north' and anything else is 'south'.
->>> nsidc_polar_lonlat(longitude, latitude, grid, hemisphere)
+>>> hemisphere = NORTH
+>>> polar_lonlat_to_ij(longitude, latitude, grid, hemisphere)
 [703, 936]
 ```
 
-### `nsidc_polar_ij.py`
+### `polar_ij_to_lonlat`
 
-This module defines a function `nsidc_polar_ij` that transforms from NSIDC Polar
-Stereographic I, J (grid) coordinates to longitude and latitude.
+Convert from NSIDC Polar Stereographic I, J (grid) coordinates to longitude and
+latitude.
 
 ```
->>> from nsidc_polar_ij import nsidc_polar_ij
+>>> from constants import NORTH
+>>> from polar_convert import polar_ij_to_lonlat
 >>> i = 10  # `i` is an int representing the x grid coordinate
 >>> j = 200  # `j` is an int representing y grid coordinate
 >>> grid_size = 12.5  # in km
->>> hemisphere = 1  # 1 is 'north' and anything else is 'south'
->>> nsidc_polar_ij(i, j, grid, hemisphere)
+>>> hemisphere = NORTH
+>>> polar_ij_to_lonlat(i, j, grid, hemisphere)
 [183.02869857834057, 45.89915728375587]
 ```
 
+## Development
 
-### `test_nsidc_polar.py`
-
-Simple tests for the `nsidc_polar_lonlat` and `nsidc_polar_ij` functions.
-
-```
-$ python test_nsidc_polar.py
-Testing Northern hemisphere, 6.25km
- time=0.6453779018484056
-Testing Northern hemisphere, 12.5km
- time=0.2094833878800273
-Testing Northern hemisphere, 25km
- time=0.07760114083066583
-Testing Southern hemisphere, 6.25km
- time=0.549166772980243
-Testing Southern hemisphere, 12.5km
- time=0.18855400010943413
-Testing Southern hemisphere, 25km
- time=0.07395890913903713
-```
+See [DEVELOPMENT.md](./DEVELOPMENT.md) for information on how to contribute to
+this python code.
 
 
 ## License
