@@ -47,13 +47,14 @@ $ conda activate lonlat
 
 ## Usage
 
-See the docstrings for individual functions in `polar_convert.py` for details.
-The functions defined in this file can be used in your own projects.
+See the docstrings for individual functions in
+[`polar_convert.py`](./polar_convert/polar_convert.py) for details.  The
+functions defined in this file can be used in your own projects.
 
 ### `polar_lonlat_to_xy`
 
 Convert from geodetic longitude and latitude to Polar Stereographic (X, Y)
-coordinates in km. Functional equivilient of [`mapll.for`](../locate/mapll.for).
+coordinates in km. Functional equivilient of `mapll.for`.
 
 ```
 >>> from polar_convert.constants import NORTH
@@ -71,7 +72,7 @@ coordinates in km. Functional equivilient of [`mapll.for`](../locate/mapll.for).
 ### `polar_xy_to_lonlat`
 
 Convert from Polar Stereographic (x, y) coordinates to geodetic longitude and
-latitude. Functional equivilent of [`mapxy.for`](../locate/mapxy.for)
+latitude. Functional equivilent of `mapxy.for`.
 
 ```
 >>> from polar_convert.constants import NORTH
