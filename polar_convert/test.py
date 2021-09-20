@@ -3,9 +3,9 @@ import time
 import numpy as np
 import pytest
 
-from constants import NORTH, SOUTH, VALID_GRID_SIZES
 from polar_convert import polar_ij_to_lonlat, polar_lonlat_to_ij
-from validators import validate_hemisphere, validate_grid_size
+from polar_convert.constants import NORTH, SOUTH, VALID_GRID_SIZES
+from polar_convert.validators import validate_hemisphere, validate_grid_size
 
 
 def _test_hemisphere(hemisphere, imax_list, jmax_list):

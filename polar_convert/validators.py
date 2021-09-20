@@ -1,4 +1,4 @@
-from constants import (
+from polar_convert.constants import (
     VALID_HEMISPHERES,
     VALID_GRID_SIZES,
 )

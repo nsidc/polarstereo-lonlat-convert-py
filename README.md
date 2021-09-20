@@ -1,6 +1,6 @@
 ![NSIDC logo](/images/NSIDC_logo_2018_poster-1.png)
 
-# Polar Stereographic geolocation, conversion, and lookup
+# NSIDC Polar Stereographic Projection lon/lat conversion: polar_convert
 
 Python functions for converting polar stereographic coordinates.
 
@@ -56,7 +56,7 @@ Convert from geodetic longitude and latitude to Polar Stereographic (X, Y)
 coordinates in km. Functional equivilient of [`mapll.for`](../locate/mapll.for).
 
 ```
->>> from constants import NORTH
+>>> from polar_convert.constants import NORTH
 >>> from polar_convert import polar_lonlat_to_xy
 >>> longitude = 20  # longitude in degrees
 >>> latitude = 80  # latitude in degrees
@@ -74,7 +74,7 @@ Convert from Polar Stereographic (x, y) coordinates to geodetic longitude and
 latitude. Functional equivilent of [`mapxy.for`](../locate/mapxy.for)
 
 ```
->>> from constants import NORTH
+>>> from polar_convert.constants import NORTH
 >>> from polar_convert import polar_xy_to_lonlat
 >>> x = 370.25  # x coordinate in km
 >>> y = -1017.24  # y coordinate in km
@@ -92,7 +92,7 @@ Convert from longitude and latitude to NSIDC Polar Stereographic I, J (grid)
 coordinates.
 
 ```
->>> from constants import NORTH
+>>> from polar_convert.constants import NORTH
 >>> from polar_convert import polar_lonlat_to_ij
 >>> longitude = 45  # longitude in degrees
 >>> latitude = 85  # latitude in degrees
@@ -108,7 +108,7 @@ Convert from NSIDC Polar Stereographic I, J (grid) coordinates to longitude and
 latitude.
 
 ```
->>> from constants import NORTH
+>>> from polar_convert.constants import NORTH
 >>> from polar_convert import polar_ij_to_lonlat
 >>> i = 10  # `i` is an int representing the x grid coordinate
 >>> j = 200  # `j` is an int representing y grid coordinate

@@ -1,12 +1,12 @@
 import numpy as np
 
-from constants import (
+from polar_convert.constants import (
     EARTH_ECCENTRICITY,
     EARTH_RADIUS_KM,
     NORTH,
     TRUE_SCALE_LATITUDE,
 )
-from validators import validate_hemisphere, validate_grid_size
+from polar_convert.validators import validate_hemisphere, validate_grid_size
 
 
 def _hemi_direction(hemisphere):
