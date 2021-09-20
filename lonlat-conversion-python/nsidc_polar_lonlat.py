@@ -1,6 +1,11 @@
 import numpy as np
 
-from constants import NORTH
+from constants import (
+    EARTH_ECCENTRICITY,
+    EARTH_RADIUS_KM,
+    NORTH,
+    TRUE_SCALE_LATITUDE,
+)
 from polar_convert import polar_lonlat_to_xy
 from validators import validate_hemisphere, validate_grid_size
 
@@ -28,10 +33,6 @@ def nsidc_polar_lonlat(longitude, latitude, grid_size, hemisphere):
             [608, 896]
     """
 
-    true_scale_lat = 70
-    re = 6378.273
-    e = 0.081816153
-
     validate_grid_size(grid_size)
     hemisphere = validate_hemisphere(hemisphere)
 
@@ -58,9 +59,9 @@ def nsidc_polar_lonlat(longitude, latitude, grid_size, hemisphere):
     xy = polar_lonlat_to_xy(
         longitude + delta,
         np.abs(latitude),
-        true_scale_lat,
-        re,
-        e,
+        TRUE_SCALE_LATITUDE,
+        EARTH_RADIUS_KM,
+        EARTH_ECCENTRICITY,
         hemisphere
     )
     i = (np.round((xy[0] - xmin) / grid_size)).astype(int) + 1

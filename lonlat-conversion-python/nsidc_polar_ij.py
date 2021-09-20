@@ -1,6 +1,11 @@
 import numpy as np
 
-from constants import NORTH
+from constants import (
+    EARTH_ECCENTRICITY,
+    EARTH_RADIUS_KM,
+    NORTH,
+    TRUE_SCALE_LATITUDE,
+)
 from polar_convert import polar_xy_to_lonlat
 from validators import validate_hemisphere, validate_grid_size
 
@@ -27,10 +32,6 @@ def nsidc_polar_ij(i, j, grid_size, hemisphere):
         print(nsidc_polar_ij(608, 896, 12.5, 1))
             [350.01450147320855, 34.40871032516291]
     """
-
-    true_scale_lat = 70
-    re = 6378.273
-    e = 0.081816153
 
     validate_grid_size(grid_size)
     hemisphere = validate_hemisphere(hemisphere)
@@ -63,7 +64,14 @@ def nsidc_polar_ij(i, j, grid_size, hemisphere):
     # Convert I, J pairs to x and y distances from origin.
     x = ((i - 1) * grid_size) + xmin
     y = ((jmax - j) * grid_size) + ymin
-    lonlat = polar_xy_to_lonlat(x, y, true_scale_lat, re, e, hemisphere)
+    lonlat = polar_xy_to_lonlat(
+        x,
+        y,
+        TRUE_SCALE_LATITUDE,
+        EARTH_RADIUS_KM,
+        EARTH_ECCENTRICITY,
+        hemisphere
+    )
     lon = lonlat[0] - delta
     lon = lon + np.less(lon, 0) * 360
 
