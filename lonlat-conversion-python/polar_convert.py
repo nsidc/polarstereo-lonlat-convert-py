@@ -111,6 +111,30 @@ def polar_lonlat_to_xy(longitude, latitude, true_scale_lat, re, e, hemisphere):
     return [x, y]
 
 
+def _grid_params(grid_size, hemisphere):
+    if hemisphere == NORTH:
+        delta = 45
+        imax = 1216
+        jmax = 1792
+        xmin = -3850 + grid_size / 2
+        ymin = -5350 + grid_size / 2
+    else:
+        delta = 0
+        imax = 1264
+        jmax = 1328
+        xmin = -3950 + grid_size / 2
+        ymin = -3950 + grid_size / 2
+
+    if grid_size == 12.5:
+        imax = imax // 2
+        jmax = jmax // 2
+    elif grid_size == 25:
+        imax = imax // 4
+        jmax = jmax // 4
+
+    return delta, imax, jmax, xmin, ymin
+
+
 def polar_ij_to_lonlat(i, j, grid_size, hemisphere):
     """Transform from NSIDC Polar Stereographic I, J coordinates
     to longitude and latitude coordinates
@@ -137,25 +161,7 @@ def polar_ij_to_lonlat(i, j, grid_size, hemisphere):
     validate_grid_size(grid_size)
     hemisphere = validate_hemisphere(hemisphere)
 
-    if hemisphere == NORTH:
-        delta = 45
-        imax = 1216
-        jmax = 1792
-        xmin = -3850 + grid_size / 2
-        ymin = -5350 + grid_size / 2
-    else:
-        delta = 0
-        imax = 1264
-        jmax = 1328
-        xmin = -3950 + grid_size / 2
-        ymin = -3950 + grid_size / 2
-
-    if grid_size == 12.5:
-        imax = imax // 2
-        jmax = jmax // 2
-    elif grid_size == 25:
-        imax = imax // 4
-        jmax = jmax // 4
+    delta, imax, jmax, xmin, ymin = _grid_params(grid_size, hemisphere)
 
     if np.any(np.less(i, 1)) or np.any(np.greater(i, imax)):
         raise ValueError("'i' value is out of range: [1, " + str(imax) + "]")
@@ -205,25 +211,7 @@ def polar_lonlat_to_ij(longitude, latitude, grid_size, hemisphere):
     validate_grid_size(grid_size)
     hemisphere = validate_hemisphere(hemisphere)
 
-    if hemisphere == NORTH:
-        delta = 45
-        imax = 1216
-        jmax = 1792
-        xmin = -3850 + grid_size / 2
-        ymin = -5350 + grid_size / 2
-    else:
-        delta = 0
-        imax = 1264
-        jmax = 1328
-        xmin = -3950 + grid_size / 2
-        ymin = -3950 + grid_size / 2
-
-    if grid_size == 12.5:
-        imax = imax // 2
-        jmax = jmax // 2
-    elif grid_size == 25:
-        imax = imax // 4
-        jmax = jmax // 4
+    delta, imax, jmax, xmin, ymin = _grid_params(grid_size, hemisphere)
 
     x, y = polar_lonlat_to_xy(
         longitude + delta,
