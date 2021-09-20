@@ -4,8 +4,7 @@ import numpy as np
 import pytest
 
 from constants import NORTH, SOUTH, VALID_GRID_SIZES
-from nsidc_polar_ij import nsidc_polar_ij
-from nsidc_polar_lonlat import nsidc_polar_lonlat
+from polar_convert import polar_ij_to_lonlat, polar_lonlat_to_ij
 from validators import validate_hemisphere, validate_grid_size
 
 
@@ -21,8 +20,8 @@ def _test_hemisphere(hemisphere, imax_list, jmax_list):
         tic = time.perf_counter()
         for i in range(1, imax_list[idx]):
             jj = np.arange(1, jmax_list[idx])
-            lonlat = nsidc_polar_ij(i, jj, grid_size, hemisphere)
-            ij = nsidc_polar_lonlat(lonlat[0], lonlat[1], grid_size, hemisphere)
+            lonlat = polar_ij_to_lonlat(i, jj, grid_size, hemisphere)
+            ij = polar_lonlat_to_ij(lonlat[0], lonlat[1], grid_size, hemisphere)
             if np.any(np.not_equal(ij[0], i)) or np.any(np.not_equal(ij[1], jj)):
                 raise RuntimeError("error: i=" + str(i))
         print(" time=" + str(time.perf_counter() - tic))
