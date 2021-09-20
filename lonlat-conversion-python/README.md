@@ -1,6 +1,6 @@
 ![NSIDC logo](../images/NSIDC_DAAC_2018_smv2.jpg)
 
-# NSIDC Polar Stereographic Projection lon/lat python scripts
+# NSIDC Polar Stereographic Projection lon/lat conversion
 
 Utilities for converting polar stereographic coordinates.
 
