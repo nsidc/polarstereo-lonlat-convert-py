@@ -54,7 +54,8 @@ functions defined in this file can be used in your own projects.
 ### `polar_lonlat_to_xy`
 
 Convert from geodetic longitude and latitude to Polar Stereographic (X, Y)
-coordinates in km. Functional equivilient of `mapll.for`.
+coordinates in km. Functional equivilient of
+[`mapll.for`](https://github.com/nsidc/polarstereo-latlon-convert-fortran/blob/main/locate/mapll.for).
 
 ```
 >>> from polar_convert.constants import NORTH
@@ -72,7 +73,8 @@ coordinates in km. Functional equivilient of `mapll.for`.
 ### `polar_xy_to_lonlat`
 
 Convert from Polar Stereographic (x, y) coordinates to geodetic longitude and
-latitude. Functional equivilent of `mapxy.for`.
+latitude. Functional equivilent of
+[`mapxy.for`](https://github.com/nsidc/polarstereo-latlon-convert-fortran/blob/main/locate/mapxy.for).
 
 ```
 >>> from polar_convert.constants import NORTH
