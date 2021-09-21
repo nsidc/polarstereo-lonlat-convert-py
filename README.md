@@ -44,8 +44,8 @@ To install `polarstereo-lonlat-convert-py`, clone this repo and then run:
 pip install --editable /path/to/cloned/polarstereo-lonlat-convert-py
 ```
 
-This will install the `polar_convert` package in an 'editable' development mode
-(allowing you to make changes to the source code in
+This will install the `polar_convert` package in an 'editable' development mode,
+allowing you to make changes to the source code in
 `/path/to/cloned/polarstereo-lonlat-convert-py`. See [pip's
 documentation](https://pip.pypa.io/en/stable/cli/pip_install/#install-editable)
 for more information.
