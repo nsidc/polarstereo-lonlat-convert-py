@@ -38,12 +38,18 @@ requirements into a `conda` environment.
 
 ## Installation
 
-It is reccomended to install the requirements for the included scripts with `conda`:
+To install `polarstereo-lonlat-convert-py`, clone this repo and then run:
 
 ```
-$ conda env create -f environment.yml
-$ conda activate lonlat
+pip install --editable /path/to/cloned/polarstereo-lonlat-convert-py
 ```
+
+This will install the `polar_convert` package in an 'editable' development mode,
+allowing you to make changes to the source code in
+`/path/to/cloned/polarstereo-lonlat-convert-py`. See [pip's
+documentation](https://pip.pypa.io/en/stable/cli/pip_install/#install-editable)
+for more information.
+
 
 ## Usage
 
