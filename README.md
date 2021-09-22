@@ -4,13 +4,7 @@
 
 Python functions for converting polar stereographic coordinates.
 
-NSIDC's polar stereographic projection specifies a projection plane or grid
-tangent to the Earth's surface at 70° northern and southern latitude. While this
-increases the distortion at the poles by six percent and decreases the
-distortion at the grid boundaries by the same amount, the latitude of 70° was
-selected so that little or no distortion would occur in the marginal ice zone.
-
-This directory contains conversion functions between longitude/latitude and generic x,
+This repository contains conversion functions between longitude/latitude and generic x,
 y (km) coordinates. There are also conversion functions between
 longitude/latitude and i, j grid coordinates for specific datasets for AMSR-E
 and SSM/I.
