@@ -137,4 +137,5 @@ See [Code of Conduct](CODE_OF_CONDUCT.md).
 
 ## Credit
 
-Credit is provided in the README file within each subdirectory.
+This software was developed by the NASA National Snow and Ice Data Center Distributed Active Archive Center.
+Author: Chris Torrence, September 2019
