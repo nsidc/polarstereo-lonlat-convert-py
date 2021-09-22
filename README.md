@@ -9,7 +9,6 @@ y (km) coordinates. There are also conversion functions between
 longitude/latitude and i, j grid coordinates for specific datasets for AMSR-E
 and SSM/I.
 
-See also [Polar Stereo Overview](https://nsidc.org/data/polar-stereo).
 
 ## Level of Support
 
@@ -138,4 +137,5 @@ See [Code of Conduct](CODE_OF_CONDUCT.md).
 ## Credit
 
 This software was developed by the NASA National Snow and Ice Data Center Distributed Active Archive Center.
+
 Author: Chris Torrence, September 2019
